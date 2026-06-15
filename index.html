@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Lorhany ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff5f8f,#ff7eb3);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.container{
+width:90%;
+max-width:500px;
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.progress{
+width:100%;
+height:10px;
+background:#eee;
+border-radius:20px;
+margin-bottom:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#ff4f87;
+transition:.5s;
+}
+
+button{
+padding:12px 20px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.next{
+background:#ff4f87;
+color:white;
+}
+
+#nao{
+background:#ddd;
+}
+
+#sim{
+background:#ff4f87;
+color:white;
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:float 5s linear forwards;
+}
+
+@keyframes float{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="progress">
+<div class="progress-bar" id="bar"></div>
+</div>
+
+<div id="content"></div>
+
+</div>
+
+<script>
+
+const telas = [
+
+`
+<h1>Oi Lorhany ❤️</h1>
+<br>
+<p>Separe alguns minutinhos para mim...</p>
+<br>
+<button class="next" onclick="proxima()">Começar ❤️</button>
+`,
+
+`
+<h2>Primeira pergunta 😌</h2>
+<br>
+<p>Você gosta de conversar comigo?</p>
+<br>
+<button class="next" onclick="proxima()">Sim ❤️</button>
+<button class="next" onclick="proxima()">Claro ❤️</button>
+`,
+
+`
+<h2>Mais uma 😁</h2>
+<br>
+<p>Nossos momentos juntos são...</p>
+<br>
+<button class="next" onclick="proxima()">Especiais ❤️</button>
+<button class="next" onclick="proxima()">Muito especiais ❤️❤️</button>
+`,
+
+`
+<h2>Mensagem secreta ✨</h2>
+<br>
+<p>
+Você se tornou uma pessoa muito importante para mim.
+</p>
+<br>
+<button class="next" onclick="proxima()">Continuar</button>
+`,
+
+`
+<h2>Quase lá 👀</h2>
+<br>
+<p>
+Cada conversa sua consegue deixar meu dia melhor.
+</p>
+<br>
+<button class="next" onclick="proxima()">Continuar ❤️</button>
+`,
+
+`
+<h2>Preparada? 😳</h2>
+<br>
+<p>
+Tem uma última coisa que eu preciso te perguntar...
+</p>
+<br>
+<button class="next" onclick="proxima()">Descobrir ❤️</button>
+`,
+
+`
+<h1>💍❤️</h1>
+<h2>Lorhany...</h2>
+<br>
+<p>Você aceita namorar comigo?</p>
+
+<br>
+
+<button id="sim">SIM ❤️</button>
+<button id="nao">NÃO 😅</button>
+`
+];
+
+let etapa = 0;
+
+function mostrar(){
+document.getElementById("content").innerHTML=telas[etapa];
+
+document.getElementById("bar").style.width=
+((etapa)/(telas.length-1))*100+"%";
+
+if(etapa===6){
+
+const nao=document.getElementById("nao");
+
+nao.addEventListener("mouseover",()=>{
+nao.style.position="absolute";
+nao.style.left=Math.random()*80+"%";
+nao.style.top=Math.random()*80+"%";
+});
+
+document.getElementById("sim").onclick=()=>{
+document.querySelector(".container").innerHTML=`
+<h1>❤️🎉❤️</h1>
+
+<h2>Você aceitou! 😭❤️</h2>
+
+<br>
+
+<p>
+Lorhany, eu prometo fazer de tudo para te fazer feliz,
+te apoiar nos momentos difíceis e valorizar cada momento ao seu lado.
+❤️
+</p>
+
+<br>
+
+<h2>Agora você é minha namorada ❤️</h2>
+`;
+
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+},200);
+};
+
+}
+}
+
+function proxima(){
+etapa++;
+mostrar();
+}
+
+mostrar();
+
+</script>
+
+</body>
+</html>
